@@ -1,28 +1,40 @@
 apiVersion: apps/v1
 kind: Deployment
+# Questo file definisce un Deployment Kubernetes per gestire i pod dell'applicazione k8sapp
 metadata:
   name: k8sapp
   namespace: default
+  # Namespace in cui viene creato il Deployment
 spec:
   replicas: 1
+  # Numero di repliche (pod) da eseguire
   selector:
     matchLabels:
       app: k8sapp
+      # Selettore: collega il Deployment ai Pod con label 'app: k8sapp'
   template:
     metadata:
       labels:
         app: k8sapp
+        # Label assegnata ai pod creati
     spec:
       containers:
       - name: k8sapp
+        # Nome del container
         image: k8sapp:v1
+        # Immagine Docker da utilizzare
         ports: 
         - containerPort: 5000
+        # Porta su cui il container ascolta
         resources:
           requests:
             memory: "64Mi"
+            # Memoria minima richiesta
             cpu: "250m"
+            # CPU minima richiesta
           limits:
             memory: "128Mi"
+            # Memoria massima consentita
             cpu: "500m"
+            # CPU massima consentita
       

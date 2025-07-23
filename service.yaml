@@ -1,13 +1,20 @@
 apiVersion: v1
 kind: Service
+# Questo file definisce un Service Kubernetes per esporre l'applicazione k8sapp sulla rete interna del cluster
 metadata:
   name: k8sapp-service
   namespace: default
+  # Namespace in cui viene creato il Service
 spec:
   selector:
     app: k8sapp
+    # Selettore: collega il Service ai Pod con label 'app: k8sapp'
   type: ClusterIP
+  # Tipo di Service: ClusterIP (accessibile solo all'interno del cluster)
   ports:
   - port: 5000
+    # Porta esposta dal Service
     targetPort: 5000
+    # Porta su cui il container ascolta
     protocol: TCP
+    # Protocollo di rete utilizzato
